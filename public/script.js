@@ -1,5 +1,6 @@
 // TIDAK ADA API KEY DI SINI. INI AMAN.
 const API_URL = '/api/generate-news'; 
+const DRAFT_STORAGE_KEY = 'beritaGenDrafts'; // Kunci untuk localStorage
 
 // === Blok Deklarasi Variabel ===
 const categorySelector = document.getElementById('category-selector');
@@ -17,7 +18,82 @@ const notification = document.getElementById('notification');
 const allFormContainers = dynamicFormArea.querySelectorAll('.form-container');
 const appDescription = document.getElementById('app-description');
 
-// === Blok Event Listener ===
+// === FUNGSI-FUNGSI BARU UNTUK MANAJEMEN DRAF ===
+
+/**
+ * Menyimpan nilai field ke dalam localStorage untuk kategori tertentu.
+ * @param {string} category - Kategori draf (misal: 'apel').
+ * @param {string} fieldId - ID dari input/textarea.
+ * @param {string} value - Nilai dari input/textarea.
+ */
+function saveDraft(category, fieldId, value) {
+    if (!category) return;
+    try {
+        const allDrafts = JSON.parse(localStorage.getItem(DRAFT_STORAGE_KEY)) || {};
+        if (!allDrafts[category]) {
+            allDrafts[category] = {};
+        }
+        allDrafts[category][fieldId] = value;
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(allDrafts));
+    } catch (e) {
+        console.error("Gagal menyimpan draf:", e);
+    }
+}
+
+/**
+ * Memuat draf dari localStorage ke dalam formulir untuk kategori tertentu.
+ * @param {string} category - Kategori draf yang akan dimuat.
+ */
+function loadDraft(category) {
+    if (!category) return;
+    try {
+        const allDrafts = JSON.parse(localStorage.getItem(DRAFT_STORAGE_KEY)) || {};
+        const categoryDraft = allDrafts[category];
+        if (categoryDraft) {
+            console.log(`Memuat draf untuk kategori: ${category}`);
+            const form = document.getElementById(`form-${category}`);
+            Object.keys(categoryDraft).forEach(fieldId => {
+                const field = form.querySelector(`#${fieldId}`);
+                if (field) {
+                    field.value = categoryDraft[fieldId];
+                }
+            });
+        }
+    } catch (e) {
+        console.error("Gagal memuat draf:", e);
+    }
+}
+
+/**
+ * Menghapus draf untuk kategori tertentu dari localStorage.
+ * @param {string} category - Kategori draf yang akan dihapus.
+ */
+function clearDraft(category) {
+    if (!category) return;
+    try {
+        const allDrafts = JSON.parse(localStorage.getItem(DRAFT_STORAGE_KEY)) || {};
+        delete allDrafts[category];
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(allDrafts));
+        console.log(`Draf untuk kategori '${category}' telah dihapus.`);
+    } catch (e) {
+        console.error("Gagal menghapus draf:", e);
+    }
+}
+
+
+// === LOGIKA BARU: MENYIMPAN DRAF SECARA OTOMATIS ===
+// Menggunakan event delegation untuk mendengarkan input pada semua field di dalam form area.
+dynamicFormArea.addEventListener('input', function(event) {
+    const category = categorySelector.value;
+    const field = event.target;
+    // Pastikan yang di-trigger adalah input atau textarea
+    if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA') {
+        saveDraft(category, field.id, field.value);
+    }
+});
+
+
+// === Blok Event Listener (dengan modifikasi untuk memuat & menghapus draf) ===
 categorySelector.addEventListener('change', function() {
     const selectedCategory = this.value;
     allFormContainers.forEach(form => form.style.display = 'none');
@@ -31,6 +107,8 @@ categorySelector.addEventListener('change', function() {
         if (formToShow) {
             formToShow.style.display = 'block';
             actionButtonContainer.style.display = 'block';
+            // Muat draf yang ada untuk kategori yang dipilih
+            loadDraft(selectedCategory);
         }
     }
 });
@@ -90,6 +168,9 @@ generateBtn.addEventListener('click', async function() {
         
         const newsText = result.newsText;
         displayResult(newsText);
+        
+        // Hapus draf setelah berhasil membuat berita
+        clearDraft(selectedCategory);
 
     } catch (error) {
         console.error("Error saat memanggil backend:", error);
@@ -99,7 +180,7 @@ generateBtn.addEventListener('click', async function() {
     }
 });
 
-// === FUNGSI buildPrompt (LENGKAP) ===
+// === FUNGSI buildPrompt (TIDAK BERUBAH) ===
 function buildPrompt(category, data) {
     if (category === 'apel') {
         return `
@@ -190,7 +271,7 @@ Hasilkan hanya teks berita lengkapnya saja, dimulai dari JUDUL yang dicetak teba
 }
 
 
-// === Blok Fungsi Helper (dengan perbaikan di copyBtn) ===
+// === Blok Fungsi Helper ===
 function showLoading(isLoading) {
     generateBtn.disabled = isLoading;
     if (isLoading) {
@@ -208,14 +289,11 @@ function displayResult(newsText) {
     newsOutput.value = newsText.trim();
 }
 
-// === FUNGSI COPY YANG BARU DAN RAMAH MOBILE ===
 copyBtn.addEventListener('click', function() {
     const textToCopy = newsOutput.value;
     if (!textToCopy) return;
 
-    // Cek apakah API clipboard didukung oleh browser
     if (navigator.clipboard && window.isSecureContext) {
-        // Metode modern dan aman
         navigator.clipboard.writeText(textToCopy).then(() => {
             showNotification('Teks berhasil disalin!');
         }).catch(err => {
@@ -223,7 +301,6 @@ copyBtn.addEventListener('click', function() {
             showNotification('Gagal menyalin teks.', true);
         });
     } else {
-        // Fallback untuk browser sangat lama (jarang terjadi, tapi baik untuk ada)
         newsOutput.select();
         try {
             document.execCommand('copy');
