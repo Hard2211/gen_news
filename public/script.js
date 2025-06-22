@@ -77,20 +77,38 @@ dynamicFormArea.addEventListener('click', function(event) {
     }
 });
 
-categorySelector.addEventListener('change', function() {
+categorySelector.addEventListener('change', async function() { // -> Jadikan async
     const selectedCategory = this.value;
-    allFormContainers.forEach(form => form.style.display = 'none');
+    
+    // Sembunyikan semua elemen kontrol terlebih dahulu
+    dynamicFormArea.innerHTML = ''; // Kosongkan area form
     actionButtonContainer.style.display = 'none';
     outputSection.style.display = 'none'; 
     mainInputSection.style.display = 'block'; 
     appDescription.style.display = 'block';
     
     if (selectedCategory) {
-        const formToShow = document.getElementById(`form-${selectedCategory}`);
-        if (formToShow) {
-            formToShow.style.display = 'block';
+        // Tampilkan loader sederhana di area form saat memuat
+        dynamicFormArea.innerHTML = `<p class="text-center text-slate-500">Memuat formulir...</p>`;
+        
+        try {
+            const response = await fetch(`./forms/${selectedCategory}.html`);
+            if (!response.ok) {
+                // Tangani jika file form tidak ditemukan
+                throw new Error(`Formulir untuk kategori '${selectedCategory}' tidak ditemukan.`);
+            }
+            const formHtml = await response.text();
+            
+            // Suntikkan HTML formulir ke dalam area dinamis
+            dynamicFormArea.innerHTML = formHtml;
+            
+            // Setelah HTML ada, baru tampilkan tombol aksi dan muat draf
             actionButtonContainer.style.display = 'block';
             loadDraft(selectedCategory);
+
+        } catch (error) {
+            console.error("Gagal memuat form:", error);
+            dynamicFormArea.innerHTML = `<p class="text-center text-red-500">${error.message}</p>`;
         }
     }
 });
