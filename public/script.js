@@ -1,7 +1,7 @@
 // TIDAK ADA API KEY DI SINI. INI AMAN.
 const API_URL = '/api/generate-news'; 
 
-// === Blok Deklarasi Variabel (dengan tambahan appDescription) ===
+// === Blok Deklarasi Variabel ===
 const categorySelector = document.getElementById('category-selector');
 const dynamicFormArea = document.getElementById('dynamic-form-area');
 const actionButtonContainer = document.getElementById('action-button-container');
@@ -15,16 +15,16 @@ const copyBtn = document.getElementById('copy-btn');
 const whatsappBtn = document.getElementById('whatsapp-btn');
 const notification = document.getElementById('notification');
 const allFormContainers = dynamicFormArea.querySelectorAll('.form-container');
-const appDescription = document.getElementById('app-description'); // Variabel baru ditambahkan
+const appDescription = document.getElementById('app-description');
 
-// === Blok Event Listener (dengan modifikasi) ===
+// === Blok Event Listener ===
 categorySelector.addEventListener('change', function() {
     const selectedCategory = this.value;
     allFormContainers.forEach(form => form.style.display = 'none');
     actionButtonContainer.style.display = 'none';
     outputSection.style.display = 'none'; 
     mainInputSection.style.display = 'block'; 
-    appDescription.style.display = 'block'; // Tampilkan lagi deskripsi
+    appDescription.style.display = 'block';
     
     if (selectedCategory) {
         const formToShow = document.getElementById(`form-${selectedCategory}`);
@@ -67,7 +67,6 @@ generateBtn.addEventListener('click', async function() {
         return;
     }
     
-    // Sembunyikan deskripsi saat proses dimulai
     appDescription.style.display = 'none'; 
 
     showLoading(true);
@@ -100,7 +99,7 @@ generateBtn.addEventListener('click', async function() {
     }
 });
 
-// === FUNGSI buildPrompt (LENGKAP DAN TIDAK BERUBAH) ===
+// === FUNGSI buildPrompt (LENGKAP) ===
 function buildPrompt(category, data) {
     if (category === 'apel') {
         return `
@@ -191,7 +190,7 @@ Hasilkan hanya teks berita lengkapnya saja, dimulai dari JUDUL yang dicetak teba
 }
 
 
-// === Blok Fungsi Helper (TIDAK BERUBAH) ===
+// === Blok Fungsi Helper (dengan perbaikan di copyBtn) ===
 function showLoading(isLoading) {
     generateBtn.disabled = isLoading;
     if (isLoading) {
@@ -209,7 +208,7 @@ function displayResult(newsText) {
     newsOutput.value = newsText.trim();
 }
 
-// === KODE BARU YANG ANDAL DAN RAMAH MOBILE ===
+// === FUNGSI COPY YANG BARU DAN RAMAH MOBILE ===
 copyBtn.addEventListener('click', function() {
     const textToCopy = newsOutput.value;
     if (!textToCopy) return;
@@ -225,7 +224,6 @@ copyBtn.addEventListener('click', function() {
         });
     } else {
         // Fallback untuk browser sangat lama (jarang terjadi, tapi baik untuk ada)
-        // Metode ini mungkin tetap tidak akan berfungsi di mobile modern, tapi ini usaha terakhir.
         newsOutput.select();
         try {
             document.execCommand('copy');
