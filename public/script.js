@@ -18,7 +18,7 @@ const notification = document.getElementById('notification');
 const allFormContainers = dynamicFormArea.querySelectorAll('.form-container');
 const appDescription = document.getElementById('app-description');
 
-// === FUNGSI-FUNGSI BARU UNTUK MANAJEMEN DRAF ===
+// === FUNGSI-FUNGSI UNTUK MANAJEMEN DRAF (localStorage) ===
 
 /**
  * Menyimpan nilai field ke dalam localStorage untuk kategori tertentu.
@@ -81,19 +81,17 @@ function clearDraft(category) {
 }
 
 
-// === LOGIKA BARU: MENYIMPAN DRAF SECARA OTOMATIS ===
-// Menggunakan event delegation untuk mendengarkan input pada semua field di dalam form area.
+// === LOGIKA UNTUK MENYIMPAN DRAF SECARA OTOMATIS ===
 dynamicFormArea.addEventListener('input', function(event) {
     const category = categorySelector.value;
     const field = event.target;
-    // Pastikan yang di-trigger adalah input atau textarea
     if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA') {
         saveDraft(category, field.id, field.value);
     }
 });
 
 
-// === Blok Event Listener (dengan modifikasi untuk memuat & menghapus draf) ===
+// === Blok Event Listener Utama ===
 categorySelector.addEventListener('change', function() {
     const selectedCategory = this.value;
     allFormContainers.forEach(form => form.style.display = 'none');
@@ -107,7 +105,6 @@ categorySelector.addEventListener('change', function() {
         if (formToShow) {
             formToShow.style.display = 'block';
             actionButtonContainer.style.display = 'block';
-            // Muat draf yang ada untuk kategori yang dipilih
             loadDraft(selectedCategory);
         }
     }
@@ -168,8 +165,6 @@ generateBtn.addEventListener('click', async function() {
         
         const newsText = result.newsText;
         displayResult(newsText);
-        
-        // Hapus draf setelah berhasil membuat berita
         clearDraft(selectedCategory);
 
     } catch (error) {
@@ -180,7 +175,7 @@ generateBtn.addEventListener('click', async function() {
     }
 });
 
-// === FUNGSI buildPrompt (TIDAK BERUBAH) ===
+// === FUNGSI buildPrompt dengan Perintah Terbaru ===
 function buildPrompt(category, data) {
     if (category === 'apel') {
         return `
@@ -198,6 +193,7 @@ ATURAN WAJIB:
 6.  **Judul Efektif:** Buat judul yang menarik, ringkas, dan relevan dengan inti berita, dengan hook penting untuk menarik minat pembaca.
 7.  **Integrasi Kutipan:** Jika ada kutipan, integrasikan secara alami ke dalam paragraf, jangan hanya menempelkannya.
 8.  **Gaya Formal dan Objektif:** Pertahankan gaya bahasa yang formal dan objektif, hindari opini pribadi.
+9.  **Filter Interpretasi Negatif:** Setelah menyusun draf, lakukan pemeriksaan internal sekali lagi. Pastikan tidak ada kata, frasa, atau kalimat yang dapat menimbulkan interpretasi negatif (pesimistis, merugikan, atau ambigu) bagi pembaca.
 
 DATA-DATA BERITA (CATATAN MENTAH DARI REPORTER):
 
@@ -243,6 +239,7 @@ ATURAN WAJIB:
 6.  **Jumlah Paragraf:** Hasil berita harus terdiri dari 3 hingga 4 paragraf.
 7.  **Judul Efektif:** Buat judul yang menarik dan relevan dengan judul atau tujuan kegiatan.
 8.  **Gaya Formal dan Objektif:** Pertahankan gaya bahasa yang formal.
+9.  **Filter Interpretasi Negatif:** Setelah menyusun draf, lakukan pemeriksaan internal sekali lagi. Pastikan tidak ada kata, frasa, atau kalimat yang dapat menimbulkan interpretasi negatif (pesimistis, merugikan, atau ambigu) bagi pembaca.
 
 DATA-DATA BERITA (CATATAN MENTAH DARI REPORTER/PESERTA):
 
