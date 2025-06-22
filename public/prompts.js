@@ -97,15 +97,17 @@ ATURAN WAJIB:
 2.  **Bahasa Baku dan Mengalir:** Gunakan Bahasa Indonesia yang baku dan gunakan kata penghubung untuk menciptakan alur yang mulus.
 3.  **Olah Data, Bukan Salin-Tempel:** Kembangkan catatan mentah menjadi kalimat jurnalistik yang baik.
 4.  **Ubah Poin Menjadi Paragraf:** Jika ada jawaban dalam bentuk poin-poin, rangkai menjadi paragraf naratif yang koheren.
-5.  **Alur Paragraf Logis:**
-    *   **Paragraf 1:** Gunakan data dari bagian "LEAD".
-    *   **Paragraf 2:** Fokus pada substansi acara, gabungkan "Pesan Pembukaan" dan "Materi Narasumber".
-    *   **Paragraf 3:** Deskripsikan "Susunan Acara" dan "Respon Peserta" untuk memberi gambaran jalannya kegiatan.
-    *   **Paragraf 4 (Jika Ada):** Gunakan data "Manfaat Konkret" sebagai kesimpulan.
-6.  **Jumlah Paragraf:** Hasil berita harus terdiri dari 3 hingga 4 paragraf.
-7.  **Judul Efektif:** Buat judul yang menarik dan relevan dengan judul atau tujuan kegiatan.
-8.  **Gaya Formal dan Objektif:** Pertahankan gaya bahasa yang formal.
-9.  **Filter Interpretasi Negatif:** Setelah menyusun draf, lakukan pemeriksaan internal sekali lagi. Pastikan tidak ada kata, frasa, atau kalimat yang dapat menimbulkan interpretasi negatif (pesimistis, merugikan, atau ambigu) bagi pembaca.
+5.  // --> PERUBAHAN DI SINI <--
+    **Penanganan Narasumber:** Jika data pada kolom 'Narasumber dan Materi' menyebutkan beberapa orang yang berbeda, jelaskan kontribusi materi dari masing-masing narasumber secara terpisah. Jika hanya ada satu narasumber, rangkum semua materinya dalam satu kesatuan yang utuh. Selalu olah data yang diberikan, jangan mengasumsikan.
+6.  **Alur Paragraf Logis:**
+    *   Paragraf 1: Gunakan data dari bagian "LEAD".
+    *   Paragraf 2: Fokus pada substansi acara, gabungkan "Pesan Pembukaan" dan "Materi Narasumber".
+    *   Paragraf 3: Deskripsikan "Susunan Acara" dan "Respon Peserta" untuk memberi gambaran jalannya kegiatan.
+    *   Paragraf 4 (Jika Ada): Gunakan data "Manfaat Konkret" sebagai kesimpulan.
+7.  **Jumlah Paragraf:** Hasil berita harus terdiri dari 3 hingga 4 paragraf.
+8.  **Judul Efektif:** Buat judul yang menarik dan relevan dengan judul atau tujuan kegiatan.
+9.  **Gaya Formal dan Objektif:** Pertahankan gaya bahasa yang formal.
+10. **Filter Interpretasi Negatif:** Setelah menyusun draf, lakukan pemeriksaan internal sekali lagi. Pastikan tidak ada kata, frasa, atau kalimat yang dapat menimbulkan interpretasi negatif (pesimistis, merugikan, atau ambigu) bagi pembaca.
 
 DATA-DATA BERITA (CATATAN MENTAH DARI REPORTER/PESERTA):
 
@@ -115,7 +117,7 @@ DATA-DATA BERITA (CATATAN MENTAH DARI REPORTER/PESERTA):
 - Waktu dan Lokasi Pelaksanaan: \${data['bimtek-lead-waktu-lokasi']}
 - Tujuan Utama Kegiatan: \${data['bimtek-lead-tujuan']}
 
---- BAGIAN DETAIL PENTING (Paragagraf 2) ---
+--- BAGIAN DETAIL PENTING (Paragraf 2) ---
 - Pesan Kunci dari Sambutan Pembukaan: \${data['bimtek-detail-pesan']}
 - Narasumber Inti dan Poin Materi Utama: \${data['bimtek-detail-narasumber']}
 
