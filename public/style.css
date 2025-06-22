@@ -1,0 +1,39 @@
+body { font-family: 'Inter', sans-serif; }
+
+.form-container { 
+    display: none; 
+}
+
+#notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #22c55e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+    visibility: hidden;
+}
+
+#notification.error {
+    background-color: #ef4444; /* red-500 */
+}
+
+#notification.show {
+    opacity: 1;
+    transform: translate(-50%, -10px);
+    visibility: visible;
+}
+
+.form-section-title {
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #4f46e5;
+}

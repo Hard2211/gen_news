@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alat Bantu Penyusunan Berita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <div class="container mx-auto max-w-6xl p-4 sm:p-6 md:p-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-indigo-700">Alat Bantu Penyusunan Berita</h1>
+            <p class="text-slate-600 mt-2">Isi formulir berdasarkan kategori untuk membuat draf berita secara otomatis.</p>
+        </header>
+
+        <main id="main-input-section" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg space-y-6">
+            
+            <div>
+                <label for="category-selector" class="block text-lg font-semibold mb-2 text-slate-700">1. Pilih Kategori Berita</label>
+                <select id="category-selector" class="w-full p-3 border border-slate-300 rounded-lg bg-white focus:ring-2 focus:ring-indigo-500">
+                    <option value="">-- Pilih Kategori --</option>
+                    <option value="apel">Apel Pagi / Gabungan</option>
+                    <option value="upacara">Upacara</option>
+                    <option value="rapat">Rapat Kerja / Koordinasi</option>
+                    <option value="bimtek">Bimtek / Pelatihan / Workshop / Sosialisasi</option>
+                    <option value="umum">Aktivitas Umum</option>
+                </select>
+            </div>
+
+            <div id="dynamic-form-area" class="mt-6 border-t border-slate-200 pt-6">
+                
+                <!-- === FORM UNTUK APEL (LENGKAP) === -->
+                <div id="form-apel" class="form-container space-y-8">
+                    <p class="text-sm bg-indigo-50 text-indigo-700 p-3 rounded-lg"><strong>Panduan Umum:</strong> Fokus pada pengisian jawaban yang akurat dan ringkas. Jawaban Anda akan menjadi bahan baku bagi AI untuk menyusun berita lengkap.</p>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 1: Inti Berita (Lead)</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-lead-what" class="font-semibold text-slate-700">Apa Pesan atau Arahan Utama?</label><p class="text-xs text-slate-500 mt-1">Tuliskan secara singkat dan langsung inti amanat yang paling menonjol.</p></div>
+                                <textarea id="apel-lead-what" data-label="Pesan Utama" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-lead-who" class="font-semibold text-slate-700">Siapa Pemimpin Apel?</label><p class="text-xs text-slate-500 mt-1">Pastikan nama dan jabatan ditulis dengan benar dan lengkap.</p></div>
+                                <input type="text" id="apel-lead-who" data-label="Pemimpin Apel" class="w-full p-2 border border-slate-300 rounded-lg">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-lead-where" class="font-semibold text-slate-700">Di Mana Apel Dilaksanakan?</label><p class="text-xs text-slate-500 mt-1">Tuliskan lokasi secara jelas.</p></div>
+                                <input type="text" id="apel-lead-where" data-label="Lokasi Apel" class="w-full p-2 border border-slate-300 rounded-lg">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-lead-when" class="font-semibold text-slate-700">Kapan Apel Dilaksanakan?</label><p class="text-xs text-slate-500 mt-1">Cukup tanggalnya saja.</p></div>
+                                <input type="text" id="apel-lead-when" data-label="Tanggal Apel" class="w-full p-2 border border-slate-300 rounded-lg">
+                            </div>
+                             <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-lead-why" class="font-semibold text-slate-700">Apa Tujuan Inti Apel Ini?</label><p class="text-xs text-slate-500 mt-1">Jelaskan alasan singkat mengapa apel ini diadakan.</p></div>
+                                <textarea id="apel-lead-why" data-label="Tujuan Apel" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 2: Detail Penting</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-detail-poin" class="font-semibold text-slate-700">Jelaskan Poin-Poin Penting Lain dari Amanat.</label><p class="text-xs text-slate-500 mt-1">Jelaskan poin pendukung yang melengkapi pesan utama.</p></div>
+                                <textarea id="apel-detail-poin" data-label="Poin Penting Lain" rows="4" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-detail-kutipan" class="font-semibold text-slate-700">Apakah Ada Kutipan Langsung yang Relevan?</label><p class="text-xs text-slate-500 mt-1">Tuliskan kutipan lengkap. Jika tidak ada, kosongkan.</p></div>
+                                <textarea id="apel-detail-kutipan" data-label="Kutipan Langsung" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 3: Detail Pendukung</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-support-suasana" class="font-semibold text-slate-700">Bagaimana Respon atau Suasana Peserta?</label><p class="text-xs text-slate-500 mt-1">Deskripsikan atmosfer keseluruhan.</p></div>
+                                <input type="text" id="apel-support-suasana" data-label="Suasana Peserta" class="w-full p-2 border border-slate-300 rounded-lg">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-support-tindaklanjut" class="font-semibold text-slate-700">Apakah Ada Arahan Spesifik untuk Tindak Lanjut?</label><p class="text-xs text-slate-500 mt-1">Jelaskan tindakan yang diharapkan setelah apel. Jika tidak ada, kosongkan.</p></div>
+                                <textarea id="apel-support-tindaklanjut" data-label="Tindak Lanjut" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 4: Konteks/Latar Belakang (Opsional)</h3>
+                        <div class="space-y-5 mt-4">
+                             <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="apel-context-info" class="font-semibold text-slate-700">Apakah Ada Informasi Latar Belakang Tambahan?</label><p class="text-xs text-slate-500 mt-1">Jelaskan latar belakang singkat. Jika tidak krusial, kosongkan.</p></div>
+                                <textarea id="apel-context-info" data-label="Info Latar Belakang" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === FORM UNTUK BIMTEK (LENGKAP) === -->
+                <div id="form-bimtek" class="form-container space-y-8">
+                    <div>
+                        <h3 class="form-section-title">Paragraf 1: Inti Berita (Lead)</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-lead-judul" class="font-semibold text-slate-700">Apa Jenis dan Judul Kegiatan Ini?</label><p class="text-xs text-slate-500 mt-1">Sebutkan jenis kegiatan dan judul lengkapnya.</p></div>
+                                <textarea id="bimtek-lead-judul" data-label="Jenis dan Judul Kegiatan" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-lead-pelaksana" class="font-semibold text-slate-700">Siapa yang Melaksanakan dan Membuka Kegiatan?</label><p class="text-xs text-slate-500 mt-1">Identifikasi OPD penyelenggara dan pimpinan yang membuka acara.</p></div>
+                                <textarea id="bimtek-lead-pelaksana" data-label="Pelaksana dan Pembuka" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-lead-waktu-lokasi" class="font-semibold text-slate-700">Kapan dan Di Mana Kegiatan Dilaksanakan?</label><p class="text-xs text-slate-500 mt-1">Tuliskan rentang tanggal dan lokasi kegiatan secara jelas.</p></div>
+                                <input type="text" id="bimtek-lead-waktu-lokasi" data-label="Waktu dan Lokasi" class="w-full p-2 border border-slate-300 rounded-lg">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-lead-tujuan" class="font-semibold text-slate-700">Apa Tujuan Utama Kegiatan Ini?</label><p class="text-xs text-slate-500 mt-1">Jelaskan mengapa kegiatan ini diadakan dari perspektif peserta.</p></div>
+                                <textarea id="bimtek-lead-tujuan" data-label="Tujuan Utama" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 2: Detail Penting</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-detail-pesan" class="font-semibold text-slate-700">Apa Pesan dan Harapan Kunci dari Sambutan Pembukaan?</label><p class="text-xs text-slate-500 mt-1">Ringkaslah inti sambutan pembukaan, terutama pesan yang paling relevan bagi peserta.</p></div>
+                                <textarea id="bimtek-detail-pesan" data-label="Pesan Kunci Pembukaan" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-detail-narasumber" class="font-semibold text-slate-700">Siapa Tokoh Sentral Lain (Narasumber) dan Apa Poin Materi Utama?</label><p class="text-xs text-slate-500 mt-1">Identifikasi narasumber dan rangkum esensi dari materi yang disampaikan.</p></div>
+                                <textarea id="bimtek-detail-narasumber" data-label="Narasumber dan Materi" rows="4" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 3: Detail Pendukung</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-support-acara" class="font-semibold text-slate-700">Bagaimana Gambaran Umum Susunan Acara Kegiatan?</label><p class="text-xs text-slate-500 mt-1">Berikan gambaran kronologis atau struktur acara.</p></div>
+                                <textarea id="bimtek-support-acara" data-label="Susunan Acara" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-support-respon" class="font-semibold text-slate-700">Bagaimana Respon dan Partisipasi Peserta?</label><p class="text-xs text-slate-500 mt-1">Deskripsikan tingkat keterlibatan dari perspektif Anda sebagai peserta/peliput.</p></div>
+                                <textarea id="bimtek-support-respon" data-label="Respon Peserta" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 4: Konteks/Manfaat (Opsional)</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="bimtek-context-manfaat" class="font-semibold text-slate-700">Apa Manfaat Konkret dari Kegiatan Ini bagi Peserta?</label><p class="text-xs text-slate-500 mt-1">Jelaskan nilai tambah atau dampak positif. Jika tidak ada, dapat dikosongkan.</p></div>
+                                <textarea id="bimtek-context-manfaat" data-label="Manfaat Konkret (Opsional)" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORM UNTUK KATEGORI LAIN (Placeholder) -->
+                <div id="form-upacara" class="form-container">Isian untuk Upacara akan ditambahkan di sini.</div>
+                <div id="form-rapat" class="form-container">Isian untuk Rapat Kerja akan ditambahkan di sini.</div>
+                <div id="form-umum" class="form-container">Isian untuk Aktivitas Umum akan ditambahkan di sini.</div>
+            </div>
+
+            <div id="action-button-container" class="border-t border-slate-200 pt-6" style="display: none;">
+                <button id="generate-btn" class="w-full bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all disabled:bg-indigo-400 disabled:cursor-not-allowed">
+                    Buatkan Berita
+                </button>
+            </div>
+        </main>
+
+        <section id="output-section" class="mt-8" style="display: none;">
+            <div id="loader" class="text-center p-8" style="display: none;">
+                <svg aria-hidden="true" class="inline w-10 h-10 text-gray-200 animate-spin fill-indigo-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0492C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5424 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>
+                <p class="mt-4 text-slate-600 font-semibold">AI sedang menyusun berita...</p>
+            </div>
+            <div id="result-container" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg" style="display: none;">
+                <h2 class="text-2xl font-bold mb-4 text-indigo-700">Hasil Draf Berita</h2>
+                <textarea id="news-output" rows="15" class="w-full p-4 border bg-slate-50 border-slate-200 rounded-lg" readonly></textarea>
+                <div class="mt-4 flex flex-col sm:flex-row gap-3">
+                    <button id="copy-btn" class="w-full sm:w-auto flex-grow bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-all">Salin Hasil</button>
+                    <button id="whatsapp-btn" class="w-full sm:w-auto flex-grow bg-cyan-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-cyan-600 transition-all">Bagikan ke WhatsApp</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="notification">Teks berhasil disalin!</div>
+    
+    <script src="script.js" defer></script>
+</body>
+</html>
