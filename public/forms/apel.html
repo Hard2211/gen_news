@@ -1,0 +1,64 @@
+<!-- === FORM UNTUK APEL (LENGKAP) === -->
+<div id="form-apel" class="form-container space-y-8">
+    <p class="text-sm bg-indigo-50 text-indigo-700 p-3 rounded-lg"><strong>Panduan Umum:</strong> Fokus pada pengisian jawaban yang akurat dan ringkas. Jawaban Anda akan menjadi bahan baku bagi AI untuk menyusun berita lengkap.</p>
+    <div>
+        <h3 class="form-section-title">Paragraf 1: Inti Berita (Lead)</h3>
+        <div class="space-y-5 mt-4">
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-lead-what" class="font-semibold text-slate-700">Apa Pesan atau Arahan Utama?</label><p class="text-xs text-slate-500 mt-1">Tuliskan secara singkat dan langsung inti amanat yang paling menonjol.</p></div>
+                <textarea id="apel-lead-what" data-label="Pesan Utama" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-lead-who" class="font-semibold text-slate-700">Siapa Pemimpin Apel?</label><p class="text-xs text-slate-500 mt-1">Pastikan nama dan jabatan ditulis dengan benar dan lengkap.</p></div>
+                <input type="text" id="apel-lead-who" data-label="Pemimpin Apel" class="w-full p-2 border border-slate-300 rounded-lg">
+            </div>
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-lead-where" class="font-semibold text-slate-700">Di Mana Apel Dilaksanakan?</label><p class="text-xs text-slate-500 mt-1">Tuliskan lokasi secara jelas.</p></div>
+                <input type="text" id="apel-lead-where" data-label="Lokasi Apel" class="w-full p-2 border border-slate-300 rounded-lg">
+            </div>
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-lead-when" class="font-semibold text-slate-700">Kapan Apel Dilaksanakan?</label><p class="text-xs text-slate-500 mt-1">Cukup tanggalnya saja.</p></div>
+                <input type="text" id="apel-lead-when" data-label="Tanggal Apel" class="w-full p-2 border border-slate-300 rounded-lg">
+            </div>
+             <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-lead-why" class="font-semibold text-slate-700">Apa Tujuan Inti Apel Ini?</label><p class="text-xs text-slate-500 mt-1">Jelaskan alasan singkat mengapa apel ini diadakan.</p></div>
+                <textarea id="apel-lead-why" data-label="Tujuan Apel" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3 class="form-section-title">Paragraf 2: Detail Penting</h3>
+        <div class="space-y-5 mt-4">
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-detail-poin" class="font-semibold text-slate-700">Jelaskan Poin-Poin Penting Lain dari Amanat.</label><p class="text-xs text-slate-500 mt-1">Jelaskan poin pendukung yang melengkapi pesan utama.</p></div>
+                <textarea id="apel-detail-poin" data-label="Poin Penting Lain" rows="4" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-detail-kutipan" class="font-semibold text-slate-700">Apakah Ada Kutipan Langsung yang Relevan?</label><p class="text-xs text-slate-500 mt-1">Tuliskan kutipan lengkap. Jika tidak ada, kosongkan.</p></div>
+                <textarea id="apel-detail-kutipan" data-label="Kutipan Langsung" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3 class="form-section-title">Paragraf 3: Detail Pendukung</h3>
+        <div class="space-y-5 mt-4">
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-support-suasana" class="font-semibold text-slate-700">Bagaimana Respon atau Suasana Peserta?</label><p class="text-xs text-slate-500 mt-1">Deskripsikan atmosfer keseluruhan.</p></div>
+                <input type="text" id="apel-support-suasana" data-label="Suasana Peserta" class="w-full p-2 border border-slate-300 rounded-lg">
+            </div>
+            <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-support-tindaklanjut" class="font-semibold text-slate-700">Apakah Ada Arahan Spesifik untuk Tindak Lanjut?</label><p class="text-xs text-slate-500 mt-1">Jelaskan tindakan yang diharapkan setelah apel. Jika tidak ada, kosongkan.</p></div>
+                <textarea id="apel-support-tindaklanjut" data-label="Tindak Lanjut" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3 class="form-section-title">Paragraf 4: Konteks/Latar Belakang (Opsional)</h3>
+        <div class="space-y-5 mt-4">
+             <div class="grid md:grid-cols-2 gap-4 items-start">
+                <div><label for="apel-context-info" class="font-semibold text-slate-700">Apakah Ada Informasi Latar Belakang Tambahan?</label><p class="text-xs text-slate-500 mt-1">Jelaskan latar belakang singkat. Jika tidak krusial, kosongkan.</p></div>
+                <textarea id="apel-context-info" data-label="Info Latar Belakang" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
