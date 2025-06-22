@@ -1,21 +1,21 @@
 <!-- Kelas "form-container" dan id="form-bimtek" telah dihapus dari div utama -->
 <div class="space-y-8">
     <div class="flex justify-between items-start mb-4">
-    <p class="text-sm bg-indigo-50 text-indigo-700 p-3 rounded-lg flex-grow"><strong>Panduan Umum:</strong> Fokus pada pengisian jawaban yang akurat dan ringkas. Jawaban Anda akan menjadi bahan baku bagi AI untuk menyusun berita lengkap.</p>
-    
-    <div class="text-right ml-4 flex-shrink-0">
-        <button class="clear-draft-btn text-sm text-red-600 hover:text-red-800 font-semibold px-3 py-1">Mulai Baru</button>
-        <p class="text-xs text-slate-500 mt-1">Hapus draf tersimpan.</p>
+        <p class="text-sm bg-indigo-50 text-indigo-700 p-3 rounded-lg flex-grow"><strong>Panduan Umum:</strong> Fokus pada pengisian jawaban yang akurat dan ringkas. Jawaban Anda akan menjadi bahan baku bagi AI untuk menyusun berita lengkap.</p>
+        <div class="text-right ml-4 flex-shrink-0">
+            <button class="clear-draft-btn text-sm text-red-600 hover:text-red-800 font-semibold px-3 py-1">Mulai Baru</button>
+            <p class="text-xs text-slate-500 mt-1">Hapus draf tersimpan.</p>
+        </div>
     </div>
-</div>
+    <div>
         <h3 class="form-section-title">Paragraf 1: Inti Berita (Lead)</h3>
         <div class="space-y-5 mt-4">
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-lead-judul" class="font-semibold text-slate-700">Apa Jenis dan Judul Kegiatan Ini?</label><p class="text-xs text-slate-500 mt-1">Sebutkan jenis kegiatan dan judul lengkapnya.</p></div>
+                <div><label for="bimtek-lead-judul" class="font-semibold text-slate-700">Apa Jenis dan Judul Kegiatan Ini?</label><p class="text-xs text-slate-500 mt-1">Sebutkan jenis kegiatan dan judul lengkap acara. Sertakan tema kegiatan jika ada.</p></div>
                 <textarea id="bimtek-lead-judul" data-label="Jenis dan Judul Kegiatan" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-lead-pelaksana" class="font-semibold text-slate-700">Siapa yang Melaksanakan dan Membuka Kegiatan?</label><p class="text-xs text-slate-500 mt-1">Identifikasi OPD penyelenggara dan pimpinan yang membuka acara.</p></div>
+                <div><label for="bimtek-lead-pelaksana" class="font-semibold text-slate-700">Siapa yang Melaksanakan dan Membuka Kegiatan?</label><p class="text-xs text-slate-500 mt-1">Sebutkan Organisasi Perangkat Daerah (OPD) sebagai penyelenggara acara. Selain itu, cantumkan jabatan lengkap pejabat atau pimpinan OPD yang membuka kegiatan, dan jika memungkinkan, sertakan juga nama lengkap beliau.</p></div>
                 <textarea id="bimtek-lead-pelaksana" data-label="Pelaksana dan Pembuka" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
             <div class="grid md:grid-cols-2 gap-4 items-start">
@@ -23,7 +23,7 @@
                 <input type="text" id="bimtek-lead-waktu-lokasi" data-label="Waktu dan Lokasi" class="w-full p-2 border border-slate-300 rounded-lg">
             </div>
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-lead-tujuan" class="font-semibold text-slate-700">Apa Tujuan Utama Kegiatan Ini?</label><p class="text-xs text-slate-500 mt-1">Jelaskan mengapa kegiatan ini diadakan dari perspektif peserta.</p></div>
+                <div><label for="bimtek-lead-tujuan" class="font-semibold text-slate-700">Apa Tujuan Utama Kegiatan Ini?</label><p class="text-xs text-slate-500 mt-1">Jelaskan tujuan utama mengapa kegiatan ini diadakan. Anda bisa mengacu pada perspektif peserta atau berdasarkan penjelasan pejabat/pimpinan yang membuka acara.</p></div>
                 <textarea id="bimtek-lead-tujuan" data-label="Tujuan Utama" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
         </div>
@@ -32,11 +32,11 @@
         <h3 class="form-section-title">Paragraf 2: Detail Penting</h3>
         <div class="space-y-5 mt-4">
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-detail-pesan" class="font-semibold text-slate-700">Apa Pesan dan Harapan Kunci dari Sambutan Pembukaan?</label><p class="text-xs text-slate-500 mt-1">Ringkaslah inti sambutan pembukaan, terutama pesan yang paling relevan bagi peserta.</p></div>
+                <div><label for="bimtek-detail-pesan" class="font-semibold text-slate-700">Apa Pesan dan Harapan Kunci dari Sambutan Pembukaan?</label><p class="text-xs text-slate-500 mt-1">Ringkaslah pesan dan harapan kunci dari sambutan pembukaan. Anda bisa menyajikannya dalam bentuk paragraf singkat yang merangkum inti sambutan, atau sebagai poin-poin penting yang paling relevan bagi peserta.</p></div>
                 <textarea id="bimtek-detail-pesan" data-label="Pesan Kunci Pembukaan" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-detail-narasumber" class="font-semibold text-slate-700">Siapa Tokoh Sentral Lain (Narasumber) dan Apa Poin Materi Utama?</label><p class="text-xs text-slate-500 mt-1">Identifikasi narasumber dan rangkum esensi dari materi yang disampaikan.</p></div>
+                <div><label for="bimtek-detail-narasumber" class="font-semibold text-slate-700">Siapa Narasumber yang menjadi pembicara pada kegiatan ini (baik sosialisasi atau bimtek) dan Apa Poin Materi Utama?</label><p class="text-xs text-slate-500 mt-1">Sebutkan nama dan jabatan lengkap setiap narasumber yang menjadi pembicara pada kegiatan sosialisasi atau bimbingan teknis (bimtek). Kemudian, rangkum esensi atau poin-poin utama materi yang disampaikan oleh masing-masing narasumber tersebut</p></div>
                 <textarea id="bimtek-detail-narasumber" data-label="Narasumber dan Materi" rows="4" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
         </div>
@@ -45,11 +45,11 @@
         <h3 class="form-section-title">Paragraf 3: Detail Pendukung</h3>
         <div class="space-y-5 mt-4">
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-support-acara" class="font-semibold text-slate-700">Bagaimana Gambaran Umum Susunan Acara Kegiatan?</label><p class="text-xs text-slate-500 mt-1">Berikan gambaran kronologis atau struktur acara.</p></div>
+                <div><label for="bimtek-support-acara" class="font-semibold text-slate-700">Bagaimana Gambaran Umum Susunan Acara Kegiatan?</label><p class="text-xs text-slate-500 mt-1">Fokus pada suasana dan poin kunci kegiatan. Ceritakan inti acaranya secara singkat dan berkesan agar pembaca langsung paham.</p></div>
                 <textarea id="bimtek-support-acara" data-label="Susunan Acara" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-support-respon" class="font-semibold text-slate-700">Bagaimana Respon dan Partisipasi Peserta?</label><p class="text-xs text-slate-500 mt-1">Deskripsikan tingkat keterlibatan dari perspektif Anda sebagai peserta/peliput.</p></div>
+                <div><label for="bimtek-support-respon" class="font-semibold text-slate-700">Bagaimana Respon dan Partisipasi Peserta?</label><p class="text-xs text-slate-500 mt-1">Fokus pada pengamatan Anda sebagai peserta/peliput. Deskripsikan tingkat keterlibatan peserta dari jumlah kehadiran, bentuk partisipasi (misal: bertanya, berdiskusi, mengikuti instruksi), serta respons unik yang Anda amati selama kegiatan.</p></div>
                 <textarea id="bimtek-support-respon" data-label="Respon Peserta" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
         </div>
@@ -58,7 +58,7 @@
         <h3 class="form-section-title">Paragraf 4: Konteks/Manfaat (Opsional)</h3>
         <div class="space-y-5 mt-4">
             <div class="grid md:grid-cols-2 gap-4 items-start">
-                <div><label for="bimtek-context-manfaat" class="font-semibold text-slate-700">Apa Manfaat Konkret dari Kegiatan Ini bagi Peserta?</label><p class="text-xs text-slate-500 mt-1">Jelaskan nilai tambah atau dampak positif. Jika tidak ada, dapat dikosongkan.</p></div>
+                <div><label for="bimtek-context-manfaat" class="font-semibold text-slate-700">Apa Manfaat Konkret dari Kegiatan Ini bagi Peserta?</label><p class="text-xs text-slate-500 mt-1">Jelaskan nilai tambah atau dampak positif yang nyata dan terukur yang didapatkan peserta dari kegiatan ini. Fokus pada manfaat spesifik, bukan generalisasi. Jika tidak ada manfaat konkret yang bisa diidentifikasi, bagian ini dapat dikosongkan.</p></div>
                 <textarea id="bimtek-context-manfaat" data-label="Manfaat Konkret (Opsional)" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
             </div>
         </div>
