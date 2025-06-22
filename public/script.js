@@ -209,11 +209,32 @@ function displayResult(newsText) {
     newsOutput.value = newsText.trim();
 }
 
+// === KODE BARU YANG ANDAL DAN RAMAH MOBILE ===
 copyBtn.addEventListener('click', function() {
-    if(!newsOutput.value) return;
-    newsOutput.select();
-    document.execCommand('copy');
-    showNotification('Teks berhasil disalin!');
+    const textToCopy = newsOutput.value;
+    if (!textToCopy) return;
+
+    // Cek apakah API clipboard didukung oleh browser
+    if (navigator.clipboard && window.isSecureContext) {
+        // Metode modern dan aman
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showNotification('Teks berhasil disalin!');
+        }).catch(err => {
+            console.error('Gagal menyalin teks: ', err);
+            showNotification('Gagal menyalin teks.', true);
+        });
+    } else {
+        // Fallback untuk browser sangat lama (jarang terjadi, tapi baik untuk ada)
+        // Metode ini mungkin tetap tidak akan berfungsi di mobile modern, tapi ini usaha terakhir.
+        newsOutput.select();
+        try {
+            document.execCommand('copy');
+            showNotification('Teks berhasil disalin!');
+        } catch (err) {
+            console.error('Fallback gagal menyalin teks: ', err);
+            showNotification('Browser Anda tidak mendukung fitur salin.', true);
+        }
+    }
 });
         
 whatsappBtn.addEventListener('click', function() {
