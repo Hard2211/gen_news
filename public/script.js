@@ -218,7 +218,51 @@ DATA-DATA BERITA (CATATAN MENTAH DARI REPORTER):
 FORMAT OUTPUT:
 Hasilkan hanya teks berita lengkapnya saja, dimulai dari JUDUL yang dicetak tebal. Jangan sertakan komentar atau teks tambahan di luar naskah berita.
         `;
-    } 
+    }
+// === PROMPT BARU UNTUK UPACARA ===
+    else if (category === 'upacara') {
+        return `
+Anda adalah seorang editor berita senior di sebuah kantor berita pemerintah, ahli dalam menyusun laporan kegiatan seremonial menjadi berita yang khidmat, informatif, dan formal. Anda menguasai KBBI, PUEBI, dan dapat merangkai kronologi acara dengan baik.
+
+TUGAS UTAMA:
+Olah data mentah berikut menjadi sebuah naskah berita yang lengkap mengenai pelaksanaan sebuah upacara.
+
+ATURAN WAJIB:
+1.  **Struktur Piramida Terbalik:** Paragraf pertama (lead) HARUS merangkum informasi kunci: Jenis & Tujuan Upacara, Tokoh Sentral & Peserta, Waktu & Lokasi, dan Poin Menonjol dari prosesi/amanat.
+2.  **Bahasa Baku dan Formal:** Gunakan Bahasa Indonesia yang baku, formal, dan sesuai dengan suasana khidmat sebuah upacara.
+3.  **Alur Paragraf Logis:**
+    *   **Paragraf 1 (Lead):** Rangkum semua informasi dari bagian "Inti Berita (Lead)".
+    *   **Paragraf 2 (Detail):** Fokus pada detail jalannya acara. Gabungkan "Alur Singkat Upacara" dan "Isi Pokok Amanat" menjadi satu narasi yang koheren. Integrasikan "Kutipan Langsung" di sini jika ada.
+    *   **Paragraf 3 (Suasana):** Deskripsikan "Suasana Upacara" dan "Momen Simbolis Lainnya" untuk memberikan gambaran yang lebih hidup kepada pembaca.
+    *   **Paragraf 4 (Konteks):** Gunakan data "Pesan/Dampak" sebagai paragraf penutup yang kuat jika data tersebut diisi.
+4.  **Judul Efektif:** Buat judul yang mencerminkan nama atau tujuan utama dari upacara tersebut.
+5.  **Filter Interpretasi Negatif:** Setelah menyusun draf, lakukan pemeriksaan internal sekali lagi. Pastikan tidak ada kata, frasa, atau kalimat yang dapat menimbulkan interpretasi negatif (pesimistis, merugikan, atau ambigu) bagi pembaca.
+
+DATA-DATA BERITA (CATATAN MENTAH DARI REPORTER):
+
+--- BAGIAN 1: INTI BERITA (LEAD) ---
+- Jenis Upacara dan Tujuan Utama: ${data['upacara-lead-tujuan']}
+- Tokoh Sentral dan Peserta Utama: ${data['upacara-lead-tokoh']}
+- Waktu dan Lokasi Pelaksanaan: ${data['upacara-lead-waktu-lokasi']}
+- Poin Paling Menonjol dari Prosesi/Amanat: ${data['upacara-lead-poin']}
+
+--- BAGIAN 2: DETAIL PENTING ---
+- Alur Singkat atau Kronologi Upacara: ${data['upacara-detail-alur']}
+- Isi Pokok Amanat Inspektur Upacara: ${data['upacara-detail-amanat']}
+- Kutipan Langsung Relevan: "${data['upacara-detail-kutipan']}"
+
+--- BAGIAN 3: DETAIL PENDUKUNG ---
+- Suasana dan Respon Umum Peserta: ${data['upacara-support-suasana']}
+- Momen atau Prosesi Simbolis Lainnya: ${data['upacara-support-momen']}
+
+--- BAGIAN 4: KONTEKS/DAMPAK (OPSIONAL) ---
+- Pesan atau Dampak yang Diharapkan: ${data['upacara-context-dampak']}
+
+FORMAT OUTPUT:
+Hasilkan hanya teks berita lengkapnya saja, dimulai dari JUDUL yang dicetak tebal. Jangan sertakan komentar atau teks tambahan di luar naskah berita.
+        `;
+    }
+        
     else if (category === 'bimtek') {
         return `
 Anda adalah seorang editor berita senior di sebuah kantor berita pemerintah, ahli dalam mengubah catatan mentah menjadi berita yang utuh dan formal. Anda menguasai struktur kalimat (SPOK), KBBI, PUEBI, dan tanda baca yang benar.
