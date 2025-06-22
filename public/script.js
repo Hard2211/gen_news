@@ -15,7 +15,6 @@ const newsOutput = document.getElementById('news-output');
 const copyBtn = document.getElementById('copy-btn');
 const whatsappBtn = document.getElementById('whatsapp-btn');
 const notification = document.getElementById('notification');
-const allFormContainers = dynamicFormArea.querySelectorAll('.form-container');
 const appDescription = document.getElementById('app-description');
 
 // === FUNGSI-FUNGSI UNTUK MANAJEMEN DRAF ===
@@ -37,7 +36,7 @@ function loadDraft(category) {
         if (categoryDraft && Object.keys(categoryDraft).length > 0) {
             console.log(`Memuat draf untuk kategori: ${category}`);
             showNotification(`Draf untuk kategori '${category}' berhasil dimuat.`);
-            const form = document.getElementById(`form-${category}`);
+            const form = dynamicFormArea; // Area form sekarang adalah target langsung
             Object.keys(categoryDraft).forEach(fieldId => {
                 const field = form.querySelector(`#${fieldId}`);
                 if (field) field.value = categoryDraft[fieldId];
@@ -70,45 +69,39 @@ dynamicFormArea.addEventListener('click', function(event) {
         const category = categorySelector.value;
         if (category && confirm(`Anda yakin ingin menghapus semua isian (draf) untuk kategori '${category}'?`)) {
             clearDraft(category);
-            const form = document.getElementById(`form-${category}`);
-            form.querySelectorAll('input, textarea').forEach(field => field.value = '');
+            dynamicFormArea.querySelectorAll('input, textarea').forEach(field => field.value = '');
             showNotification(`Draf untuk '${category}' telah dihapus.`, true);
         }
     }
 });
 
-categorySelector.addEventListener('change', async function() { // -> Jadikan async
+categorySelector.addEventListener('change', async function() {
     const selectedCategory = this.value;
     
-    // Sembunyikan semua elemen kontrol terlebih dahulu
-    dynamicFormArea.innerHTML = ''; // Kosongkan area form
+    dynamicFormArea.innerHTML = ''; 
     actionButtonContainer.style.display = 'none';
     outputSection.style.display = 'none'; 
     mainInputSection.style.display = 'block'; 
     appDescription.style.display = 'block';
     
     if (selectedCategory) {
-        // Tampilkan loader sederhana di area form saat memuat
         dynamicFormArea.innerHTML = `<p class="text-center text-slate-500">Memuat formulir...</p>`;
         
         try {
             const response = await fetch(`./forms/${selectedCategory}.html`);
             if (!response.ok) {
-                // Tangani jika file form tidak ditemukan
-                throw new Error(`Formulir untuk kategori '${selectedCategory}' tidak ditemukan.`);
+                throw new Error(`Formulir untuk kategori '${selectedCategory}' belum tersedia.`);
             }
             const formHtml = await response.text();
             
-            // Suntikkan HTML formulir ke dalam area dinamis
             dynamicFormArea.innerHTML = formHtml;
             
-            // Setelah HTML ada, baru tampilkan tombol aksi dan muat draf
             actionButtonContainer.style.display = 'block';
             loadDraft(selectedCategory);
 
         } catch (error) {
             console.error("Gagal memuat form:", error);
-            dynamicFormArea.innerHTML = `<p class="text-center text-red-500">${error.message}</p>`;
+            dynamicFormArea.innerHTML = `<p class="text-center text-red-500 p-4 bg-red-50 rounded-lg">${error.message}</p>`;
         }
     }
 });
@@ -117,17 +110,17 @@ generateBtn.addEventListener('click', async function() {
     const selectedCategory = categorySelector.value;
     if (!selectedCategory) return;
 
-    const activeForm = document.getElementById(`form-${selectedCategory}`);
-    const inputs = activeForm.querySelectorAll('input, textarea');
+    const inputs = dynamicFormArea.querySelectorAll('input, textarea');
     let data = {};
     let isValid = true;
     
     for (const input of inputs) {
-        const labelText = input.parentElement.previousElementSibling?.querySelector('label')?.textContent || '';
+        const labelText = input.dataset.label;
         const isOptional = labelText.includes('(Opsional)');
         const isAllowedEmpty = input.id.includes('kutipan') || input.id.includes('tindaklanjut') || input.id.includes('context');
+        
         if (!input.value.trim() && !isOptional && !isAllowedEmpty) {
-            alert(`Harap isi kolom: "${input.dataset.label}"`);
+            alert(`Harap isi kolom: "${labelText}"`);
             input.focus();
             isValid = false;
             break; 
@@ -147,7 +140,7 @@ generateBtn.addEventListener('click', async function() {
     
     try {
         const payload = { prompt };
-        const response = await fetch(API_URL, {
+        const response = await fetch('/api/generate-news', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
@@ -167,7 +160,7 @@ generateBtn.addEventListener('click', async function() {
 
 // === FUNGSI buildPrompt YANG DIREFAKTOR ===
 function buildPrompt(category, data) {
-    if (!PROMPTS[category]) {
+    if (!PROMPTS || !PROMPTS[category]) {
         return null;
     }
     let promptText = PROMPTS[category];
@@ -182,9 +175,66 @@ function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// === Blok Fungsi Helper ===
-function showLoading(isLoading) { /* ... */ }
-function displayResult(newsText) { /* ... */ }
-copyBtn.addEventListener('click', function() { /* ... */ });
-whatsappBtn.addEventListener('click', function() { /* ... */ });
-function showNotification(message, isError = false) { /* ... */ }
+// === Blok Fungsi Helper (TIDAK BERUBAH) ===
+function showLoading(isLoading) {
+    generateBtn.disabled = isLoading;
+    if (isLoading) {
+        mainInputSection.style.display = 'none';
+        outputSection.style.display = 'block';
+        loader.style.display = 'block';
+        resultContainer.style.display = 'none';
+    } else {
+        loader.style.display = 'none';
+        resultContainer.style.display = 'block';
+    }
+}
+        
+function displayResult(newsText) {
+    newsOutput.value = newsText.trim();
+}
+
+copyBtn.addEventListener('click', function() {
+    const textToCopy = newsOutput.value;
+    if (!textToCopy) return;
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            showNotification('Teks berhasil disalin!');
+        }).catch(err => {
+            showNotification('Gagal menyalin teks.', true);
+        });
+    } else {
+        try {
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showNotification('Teks berhasil disalin!');
+        } catch (err) {
+            showNotification('Browser Anda tidak mendukung fitur salin.', true);
+        }
+    }
+});
+        
+whatsappBtn.addEventListener('click', function() {
+    const textToShare = newsOutput.value;
+    if(textToShare) {
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(textToShare)}`;
+        window.open(whatsappUrl, '_blank');
+    } else {
+        alert('Tidak ada teks untuk dibagikan.');
+    }
+});
+        
+function showNotification(message, isError = false) {
+    notification.textContent = message;
+    notification.className = 'show';
+    if (isError) {
+        notification.classList.add('error');
+    }
+    setTimeout(() => {
+        notification.className = notification.className.replace('show', '');
+    }, 3000);
+}
