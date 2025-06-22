@@ -103,6 +103,71 @@
                     </div>
                 </div>
 
+                <!-- === FORM BARU UNTUK UPACARA === -->
+                <div id="form-upacara" class="form-container space-y-8">
+                    <p class="text-sm bg-indigo-50 text-indigo-700 p-3 rounded-lg"><strong>Panduan Umum:</strong> Isi setiap pertanyaan dengan detail spesifik mengenai jalannya upacara, suasana, dan poin-poin penting dari amanat atau prosesi.</p>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 1: Inti Berita (Lead)</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-lead-tujuan" class="font-semibold text-slate-700">Apa Jenis Upacara dan Tujuan Utamanya?</label><p class="text-xs text-slate-500 mt-1">Jelaskan jenis upacara (misal: Hari Kemerdekaan, serah terima jabatan) dan alasan utama mengapa upacara tersebut diadakan.</p></div>
+                                <textarea id="upacara-lead-tujuan" data-label="Jenis dan Tujuan Upacara" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-lead-tokoh" class="font-semibold text-slate-700">Siapa Tokoh Sentral dan Peserta Utamanya?</label><p class="text-xs text-slate-500 mt-1">Sebutkan nama/jabatan inspektur upacara atau tokoh utama, dan identifikasi kelompok peserta yang paling dominan.</p></div>
+                                <textarea id="upacara-lead-tokoh" data-label="Tokoh dan Peserta" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-lead-waktu-lokasi" class="font-semibold text-slate-700">Kapan dan Di Mana Upacara Dilaksanakan?</label><p class="text-xs text-slate-500 mt-1">Tuliskan tanggal dan tempat upacara secara jelas.</p></div>
+                                <input type="text" id="upacara-lead-waktu-lokasi" data-label="Waktu dan Lokasi Upacara" class="w-full p-2 border border-slate-300 rounded-lg">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-lead-poin" class="font-semibold text-slate-700">Apa Poin Paling Menonjol dari Prosesi atau Amanat?</label><p class="text-xs text-slate-500 mt-1">Jelaskan satu poin terpenting dari jalannya upacara atau inti pesan dari amanat inspektur upacara.</p></div>
+                                <textarea id="upacara-lead-poin" data-label="Poin Menonjol" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 2: Detail Penting</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-detail-alur" class="font-semibold text-slate-700">Jelaskan Alur Singkat atau Kronologi Upacara.</label><p class="text-xs text-slate-500 mt-1">Uraikan tahapan-tahapan kunci upacara secara berurutan.</p></div>
+                                <textarea id="upacara-detail-alur" data-label="Alur Upacara" rows="4" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-detail-amanat" class="font-semibold text-slate-700">Apa Isi Pokok Amanat Inspektur Upacara?</label><p class="text-xs text-slate-500 mt-1">Ringkaslah pesan-pesan esensial dari amanat yang disampaikan.</p></div>
+                                <textarea id="upacara-detail-amanat" data-label="Isi Pokok Amanat" rows="4" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-detail-kutipan" class="font-semibold text-slate-700">Apakah Ada Kutipan Langsung yang Sangat Relevan?</label><p class="text-xs text-slate-500 mt-1">Tuliskan kutipan verbatim (dengan tanda petik). Jika tidak ada, kosongkan.</p></div>
+                                <textarea id="upacara-detail-kutipan" data-label="Kutipan Langsung" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 3: Detail Pendukung</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-support-suasana" class="font-semibold text-slate-700">Bagaimana Suasana dan Respon Umum Peserta?</label><p class="text-xs text-slate-500 mt-1">Gambarkan atmosfer (misal: khidmat, meriah) dan reaksi peserta.</p></div>
+                                <input type="text" id="upacara-support-suasana" data-label="Suasana dan Respon Peserta" class="w-full p-2 border border-slate-300 rounded-lg">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-support-momen" class="font-semibold text-slate-700">Apakah Ada Momen Simbolis Lain yang Perlu Disoroti?</label><p class="text-xs text-slate-500 mt-1">Sebutkan momen penting lain (misal: pengibaran bendera, hening cipta, penyerahan penghargaan).</p></div>
+                                <textarea id="upacara-support-momen" data-label="Momen Simbolis Lain" rows="3" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="form-section-title">Paragraf 4: Konteks/Dampak (Opsional)</h3>
+                        <div class="space-y-5 mt-4">
+                            <div class="grid md:grid-cols-2 gap-4 items-start">
+                                <div><label for="upacara-context-dampak" class="font-semibold text-slate-700">Apa Pesan atau Dampak yang Diharapkan dari Upacara Ini? (Opsional)</label><p class="text-xs text-slate-500 mt-1">Jelaskan nilai atau tujuan yang lebih luas dari upacara tersebut.</p></div>
+                                <textarea id="upacara-context-dampak" data-label="Pesan/Dampak (Opsional)" rows="2" class="w-full p-2 border border-slate-300 rounded-lg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- === FORM UNTUK BIMTEK (LENGKAP) === -->
                 <div id="form-bimtek" class="form-container space-y-8">
                     <div>
